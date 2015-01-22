@@ -1,19 +1,26 @@
 <body>
   <div class="container">
-<div class="page-header">Frequently Asked Questions</div>
+<div class="page-header"><h1>Frequently Asked Questions</h1></div>
+<!-- <ul>
+  <li><%= link_to "What is gCamp?", "#what" %></li>
+  <li><%= link_to "How do I join gCamp?", "#how" %></li>
+  <li><%= link_to "When will gCamp be finished?", "#when" %></li>
+</ul> -->
+  <ul>
+      <% @common_questions.each do |q| %>
+      <li><%= link_to q.question, "##{q.slug}" %></li>
+      <% end %>
+  </ul>
+<div class="row">
+    <div class="col-md-6">
+  <% @common_questions.each do |q| %>
+    <p id="<%= q.slug %>"><h3><%= q.question %></h3></p>
+    <p><%= q.answer %></p>
+    <%= link_to "top", "#top" %>
+    <% end %>
+</div>
+</div>
 
-  <h3>What is gCamp?</h3>
-  <p>gCamp is an awesome tool that is going to change your life.  gCamp is your one stop shop to organize all your tasks.  You'll also be able to track comments that you and others make.  gCamp may eventually replace all need for paper and pens in the entire world.  Well, maybe not, but it's going to be pretty cool.
-  </p>
-
-  <h3>How do I join gCamp?</h3>
-  <p>As soon as it's ready for the public, you'll see a signup link in the upper right.  Once that's there, just click it and fill in the form!
-  </p>
-
-  <h3>When will gCamp be finished?</h3>
-  <p>gCamp is a work in progress.  That being said, it should be fully functional in the next few weeks.  Functional.  Check in daily for new features and awesome functionality.  It's going to blow your mind.  Organization is just a click away.  Amazing!
-
-  </p>
 
 </div>
 </body>

@@ -6,4 +6,10 @@ class WelcomeController < ApplicationController
       ["“Don't hesitate - sign up right now! You'll never be the same.”", "— Lavern Upton"]
       ]
     end
+    # def zach
+    #   @zach = "Hi hi hi"
+    # end
 end
+
+
+# adding more pages to one controller is the zack action that is out, Then I would make a zach.html.erb and I would add @zach in there
