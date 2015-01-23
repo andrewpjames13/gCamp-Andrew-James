@@ -2,9 +2,9 @@ class FaqController < ApplicationController
 
   def index
     question1 = CommonQuestion.new
-      question1.question = "What is gSchool?"
+      question1.question = "What is gCamp?"
       question1.answer = "gCamp is an awesome tool that is going to change your life.  gCamp is your one stop shop to organize all your tasks.  You'll also be able to track comments that you and others make.  gCamp may eventually replace all need for paper and pens in the entire world.  Well, maybe not, but it's going to be pretty cool."
-      question1.slug = "what-is-gScool"
+      question1.slug = "what-is-gcamp"
 
     question2 = CommonQuestion.new
       question2.question = "How do I join gCamp?"
