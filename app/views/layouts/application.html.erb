@@ -38,18 +38,10 @@
           </div>
 
           <div class="col-xs-6 text-right">
-            <a href="https://www.linkedin.com/pub/andrew-james/3b/889/443">
-                <%= image_tag('linkedin_icon.jpg', class:"img-footer", alt:"Linked in") %>
-            </a>
-            <a href="https://github.com/andrewpjames13">
-            <%= image_tag('GitHub_icon.png', class:"img-footer", alt:"GitHub") %>
-            </a>
-            <a href="https://twitter.com/ajamesDesign13">
-            <%= image_tag('Twitter_icon.png', class:"img-footer", alt:"Twitter") %>
-            </a>
-            <a href="https://students.gschool.it/students/198">
-            <%= image_tag('galvanize_icon.png', class:"img-footer", alt:"galvanize") %>
-            </a>
+            <%= link_to(image_tag("linkedin_icon.jpg", class:"img-footer", alt:"Linked in"), "https://www.linkedin.com/pub/andrew-james/3b/889/443") %>
+            <%= link_to(image_tag("GitHub_icon.png", class:"img-footer", alt:"GitHub"), "https://github.com/andrewpjames13") %>
+            <%= link_to(image_tag("Twitter_icon.png", class:"img-footer", alt:"Twitter"), "https://twitter.com/ajamesDesign13") %>
+            <%= link_to(image_tag("galvanize_icon.png", class:"img-footer", alt:"galvanize"), "https://students.gschool.it/students/198") %>
           </div>
         </div>
       </footer>
