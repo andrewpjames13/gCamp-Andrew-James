@@ -16,3 +16,18 @@ padding: 1em 0;
 margin-top: 1em;
 border-top: 1px solid #ccc;
 }
+.btn-info {
+  background-image: linear-gradient(to bottom, #5bc0de 0%, #2aabd2 100%);
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075);
+  background-repeat: repeat-x;
+  border-color: #28a4c9;
+}
+
+.btn-danger {
+  background-image: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
+  background-repeat: repeat-x;
+  border-color: #b92c28;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075);
+}
