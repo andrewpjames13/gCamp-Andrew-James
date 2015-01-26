@@ -33,8 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :production do
-  #Gives postgres
-  gem 'pg'
 
   gem 'rails_12factor'
 
@@ -51,6 +49,7 @@ group :development, :test do
   gem 'spring'
 
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  #Gives postgres
+  gem 'pg'
 
 end
