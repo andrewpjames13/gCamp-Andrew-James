@@ -1,10 +1,17 @@
+<% if flash[:notice] %>
+<div class="alert alert-success text-center"><%= flash[:notice] %></div>
+<% end %>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_task_path(@task), class:"btn btn-info" %>
+  </div>
+  <p>
+  <h1><%= @task.description %></h1>
 </p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+</div>
+<ol class="breadcrumb">
+  <li><%= link_to "Tasks", tasks_path %>
+  </li>
+  <li class="active"><%= @task.description %></li>
+</ol>
