@@ -22,9 +22,9 @@
 <div class="form-group">
   <div class="actions">
     <div class="col-md-offset-2 col-md-4">
-      <input class="btn btn-primary" name="commit" type="submit" value="Create Task">
-      <%= f.submit %>
-    </input>
+      <input class="btn btn-primary" <%= f.submit %>
+      <%= link_to 'cancel', tasks_path, class:"btn btn-default" %>
+
   </div>
 </div>
 </div>
