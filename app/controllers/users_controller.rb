@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     @submit_name = "Update User"
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def update
     respond_to do |format|
       if @user.update(user_params)

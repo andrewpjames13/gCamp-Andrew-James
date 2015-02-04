@@ -1,0 +1,15 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-info" %>
+  </div>
+  <p>
+    <h1><%= @user.full_name %></h1>
+  </p>
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Users", users_path %>
+  </li>
+  <li class="active"><%= @user.full_name %></li>
+</ol>
+<%= @user.full_name %>
