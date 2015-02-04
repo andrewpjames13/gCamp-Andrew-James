@@ -12,5 +12,12 @@
   </li>
   <li class="active"><%= @user.full_name %></li>
 </ol>
-<p><strong><%= @user.full_name %></strong></p>
-<p><strong><%= @user.email %></strong></p>
+
+<dl class="dl-horizontal">
+  <dt><b>First name</b></dt>
+<p><dd><%= @user.first_name %></dd></p>
+<dt><b>Last name</b></dt>
+<p><dd><%= @user.last_name %></dd></p>
+<dt><b>Email</b></dt>
+<p><dd><%= @user.email %></dd></p>
+</dl>
