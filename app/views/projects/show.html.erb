@@ -1,0 +1,17 @@
+<div class="page-header">
+
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-info" %>
+    <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+  </div>
+
+  <p>
+    <h1><%= @project.name %></h1>
+  </p>
+
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path %></li>
+  <li class="active"><%= @project.name %></li>
+</ol>
