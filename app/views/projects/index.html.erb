@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to p.name, project_path(p) %></td>
         <td class="text-right">
-          <%= link_to 'Edit', edit_user_path(p), class:"btn btn-info" %>
+          <%= link_to 'Edit', edit_project_path(p), class:"btn btn-info" %>
           <%= link_to 'Delete', p, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
         </td>
       </tr>
