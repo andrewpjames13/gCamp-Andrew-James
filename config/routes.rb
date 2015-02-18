@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get 'terms' => 'terms#index'
   get 'faq' => 'faq#index'
   get 'tasks' => 'tasks#index'
+  get '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
+  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
