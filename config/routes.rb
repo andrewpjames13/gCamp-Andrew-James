@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   get 'terms' => 'terms#index'
   get 'faq' => 'faq#index'
   get 'tasks' => 'tasks#index'
+  get '/signup' => 'registrations#new'
+  post '/signup' => 'registrations#create'
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
-  
+  get '/signout' => 'sessions#destroy'
 
 
   # Example of regular route:
