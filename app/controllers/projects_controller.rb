@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+  before_action :authenticate
+
   def index
     @projects = Project.all
   end
@@ -37,7 +39,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    
+
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
