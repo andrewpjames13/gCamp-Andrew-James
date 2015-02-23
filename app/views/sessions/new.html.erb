@@ -1,8 +1,14 @@
+
 <div class="clearfix well col-md-4 col-md-offset-4">
 
   <h1>Sign into gCamp</h1>
 
   <%= form_tag '/signin' do %>
+  <% if flash[:login_alert] %>
+  <div class="alert alert-danger">
+  <%= flash[:login_alert] %>
+  </div>
+  <% end %>
   <div class="form-group">
     <%= label_tag :email, nil, class: "control-label" %>
     <%= text_field_tag :email, nil, class: "form-control" %>
