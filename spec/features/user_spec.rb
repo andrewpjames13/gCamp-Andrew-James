@@ -4,6 +4,8 @@ describe 'User can CRUD new user' do
 
   before :each do
     visit '/'
+    User.create(:first_name => "TestFirstName", :last_name => 'TestLastName', :email => 'Test@email.com')
+
     click_on "Users"
   end
 
