@@ -12,26 +12,29 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @project = Project.find(params[:project_id])
+
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
+    @project = Project.find(params[:project_id])
   end
 
   # GET /tasks/1/edit
   def edit
+    @project = Project.find(params[:project_id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
-
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.new(task_params)
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        format.html { redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -42,9 +45,11 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @project = Project.find(params[:project_id])
+
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -56,9 +61,11 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @project = Project.find(params[:project_id])
+
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +78,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:description, :due_date, :complete )
+      params.require(:task).permit(:description, :due_date, :complete, :project_id )
     end
 end
