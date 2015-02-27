@@ -4,6 +4,12 @@
   </div>
   <h1>Tasks</h1></div>
 
+  <ol class="breadcrumb">
+    <li><%= link_to "Projects", projects_path %></li>
+    <li><%= link_to @project.name, project_path(@project) %></li>
+    <li class="active">Tasks</li>
+  </ol>
+
 <table class="table table-striped table-hover">
   <thead>
     <tr>
