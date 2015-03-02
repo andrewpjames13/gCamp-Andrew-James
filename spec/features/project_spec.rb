@@ -4,6 +4,15 @@ describe 'User can CRUD new project' do
 
   before :each do
     visit "/"
+    User.create(:first_name => "TestFirstName", :last_name => 'TestLastName', :email => 'Test@email.com', :password => 'mypass', :password_confirmation => 'mypass')
+    click_on "Sign In"
+    expect(page).to have_content("Sign into gCamp")
+
+    fill_in 'Email', :with => "Test@email.com"
+    fill_in 'Password', :with => "mypass"
+    click_button "Sign In"
+
+    expect(page).to have_content("TestFirstName")
     click_on "Projects"
   end
 
