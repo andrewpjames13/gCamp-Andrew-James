@@ -31,24 +31,18 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to projects_path, notice: 'Project was successfully destroyed.'
   end
 
   def update
     @project = Project.find(params[:id])
 
-    respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
+        redirect_to project_path(@project), notice: 'Project was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+          render :edit
       end
-    end
+
   end
 
   private
