@@ -10,18 +10,18 @@
     <li class="active">Tasks</li>
   </ol>
 
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Complete</th>
-      <th>Due On</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Complete</th>
+        <th>Due On</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @project.tasks.each do |task| %>
+    <tbody>
+      <% @project.tasks.each do |task| %>
       <tr>
         <td><%= task.description %></td>
         <td><%= task.complete? %></td>
@@ -32,8 +32,8 @@
           <%= link_to 'Delete', project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
         </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
+  <br>

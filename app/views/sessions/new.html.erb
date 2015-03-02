@@ -6,7 +6,7 @@
   <%= form_tag '/signin' do %>
   <% if flash[:login_alert] %>
   <div class="alert alert-danger">
-  <%= flash[:login_alert] %>
+    <%= flash[:login_alert] %>
   </div>
   <% end %>
   <div class="form-group">
@@ -17,6 +17,6 @@
     <%= label_tag :password, nil, class: "control-label" %>
     <%= password_field_tag :password, nil, class: "form-control" %>
   </div>
-    <%= submit_tag 'Sign In', class: "btn btn-primary" %>
+  <%= submit_tag 'Sign In', class: "btn btn-primary" %>
   <% end %>
 </div>
