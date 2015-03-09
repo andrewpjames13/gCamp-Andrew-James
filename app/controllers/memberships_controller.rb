@@ -7,6 +7,17 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.new
   end
 
+  def create
+    @project = Project.find(params[:project_id])
+    @user = User.find_by(params[:id])
+    @membership = @project.memberships.new(membership_params)
+    if @membership.save
+      redirect_to project_memberships_path(@project), notice: "#{@user.full_name} was successfully added"
+    else
+      render project_memberships_path(@project), notice: "Member was not created"
+    end
+  end
+
   private
 
   def membership_params
