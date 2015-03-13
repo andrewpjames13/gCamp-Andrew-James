@@ -27,6 +27,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:project_id])
+    @membership = Membership.find(params[:id])
     @membership.destroy
     redirect_to project_memberships_path(@project), notice: "Member was successfully deleated"
   end
