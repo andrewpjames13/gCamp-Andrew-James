@@ -18,6 +18,13 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def update
+    @project = Project.find(params[:project_id])
+    @membership = Membership.find(params[:id])
+    @membership.update(membership_params)
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
+  end
+
   def destroy
     @project = Project.find(params[:project_id])
     @membership.destroy
