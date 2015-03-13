@@ -14,8 +14,14 @@ class MembershipsController < ApplicationController
     if @membership.save
       redirect_to project_memberships_path(@project), notice: "#{@user.full_name} was successfully added"
     else
-      render project_memberships_path(@project), notice: "Member was not created"
+      render project_memberships_path(@project), notice: "Member was not added"
     end
+  end
+
+  def destroy
+    @project = Project.find(params[:project_id])
+    @membership.destroy
+    redirect_to project_memberships_path(@project), notice: "Member was successfully deleated"
   end
 
   private
