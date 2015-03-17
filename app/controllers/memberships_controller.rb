@@ -14,7 +14,7 @@ class MembershipsController < ApplicationController
     if @membership.save
       redirect_to project_memberships_path(@project), notice: "#{@user.full_name} was successfully added"
     else
-      render :index, notice: "Member was not added"
+      redirect_to project_memberships_path(@project), notice: "Member was not added"
     end
   end
 
