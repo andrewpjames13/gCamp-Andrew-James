@@ -2,7 +2,6 @@
 
   <div class="pull-right">
     <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-info" %>
-    <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
   </div>
 
   <p>
@@ -20,6 +19,12 @@
 <br>
 <br>
 <%= link_to "#{@project.memberships.count} Memberships", project_memberships_path(@project) %>
-<div class="">
+<br><br>
+<div class="well">
+  <h4>Delete Project</h4>
+  <p>
+<%= "Deleting this project will also delete #{@project.memberships.count} Memberships, #{@project.tasks.count} Tasks and associated comments"%>
+  </p>
+  <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
 
 </div>
