@@ -59,7 +59,7 @@ describe 'User can CRUD new task' do
     click_on "1"
     expect(page).to have_content("Tasks for TestProject")
 
-    click_on "Show"
+    click_on "TestDescription"
     expect(page).to have_content("TestDescription")
 
   end
@@ -114,8 +114,8 @@ describe 'User can CRUD new task' do
 
     click_on "1"
     expect(page).to have_content("Tasks for TestProject")
-  
-    click_on "Delete"
+
+    click_on("delete-link")
     expect(page).to have_content("Task was successfully destroyed.")
 
   end
