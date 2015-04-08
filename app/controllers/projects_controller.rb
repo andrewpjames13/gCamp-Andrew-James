@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     user_id = session[:user_id]
     if @project.save
       @project.memberships.create(role: 2, user_id: user_id)
-      redirect_to project_path(@project), notice: "Project was successfully created!"
+      redirect_to project_tasks_path(@project), notice: "Project was successfully created!"
     else
       render :new
     end
