@@ -18,16 +18,19 @@
     </thead>
 
     <tbody>
-      <% @projects.each do |p| %>
-      <tr>
-        <td><%= link_to p.name, project_path(p) %></td>
-        <td><%= link_to p.tasks.count, project_tasks_path(p) %></td>
-        <td class="text-right">
-          <%= link_to 'Edit', edit_project_path(p), class:"btn btn-info" %>
-          <%= link_to 'Delete', p, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
-        </td>
-      </tr>
-      <% end %>
+        <% Membership.all.each do |member| %>
+        <% if member.user_id == current_user.id %>
+        <tr>
+          <td><%= link_to member.project.name, project_path(member.project) %></td>
+          <td><%= link_to member.project.tasks.count, project_tasks_path(member.project) %></td>
+          <td class="text-right">
+            <%= link_to 'Edit', edit_project_path(member.project), class:"btn btn-info" %>
+            <%= link_to 'Delete', project_path(member.project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+
     </tbody>
   </table>
 

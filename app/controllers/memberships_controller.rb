@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
-
+  before_action :current_member
+  
   def index
     @memberships = Membership.all
     @project = Project.find(params[:project_id])

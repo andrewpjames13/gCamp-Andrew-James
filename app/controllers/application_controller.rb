@@ -13,6 +13,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_member
+    @project = Project.find_by_id(params[:project_id])
+    @project.memberships.each do |member|
+      if member.user_id != current_user.id
+          redirect_to projects_path, notice: 'You do not have access to that project'
+        end
+      end
+  end
+
+  helper_method :current_member
   helper_method :current_user
-  
+
 end

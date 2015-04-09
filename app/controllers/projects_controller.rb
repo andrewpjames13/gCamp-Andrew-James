@@ -1,9 +1,18 @@
 class ProjectsController < ApplicationController
-
   before_action :authenticate
+
 
   def index
     @projects = Project.all
+    @user = User.find_by_id(session[:user_id])
+  end
+
+  def something(project)
+    project.memberships.each do |membership|
+      if membership.user_id == @user.id
+        project.name
+      end
+    end
   end
 
   def new
