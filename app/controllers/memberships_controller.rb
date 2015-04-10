@@ -30,7 +30,11 @@ class MembershipsController < ApplicationController
     @project = Project.find(params[:project_id])
     @membership = Membership.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path(@project), notice: "Member was successfully deleated"
+    if params[:from]=='own_membership'
+      redirect_to projects_path, notice: "#{@membership.user.full_name} was successfully removed"
+    else
+      redirect_to project_memberships_path(@project), notice: "Member was successfully deleated"
+    end
   end
 
   private

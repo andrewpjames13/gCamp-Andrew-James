@@ -54,6 +54,9 @@
             <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, project_membership_path(@project, membership), method: :delete %>
           <% else %>
             <%= member.role %>
+            <% if current_user.id == membership.user_id %>
+              <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, project_membership_path(@project, membership, :from=>"own_membership"), method: :delete, notice:"#{membership.user.full_name}  successfully removed" %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
