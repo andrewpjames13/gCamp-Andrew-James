@@ -51,7 +51,11 @@
             <%= f.hidden_field :user_id, value: membership.user.id %>
             <%= f.select :role, Membership.roles.keys.map{|role| [role.titleize,role]}, {}, {class: "form-control"} %>
             <%= f.submit "Update", class: "btn btn-primary" %>
-            <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, project_membership_path(@project, membership), method: :delete %>
+              <% if @project.memberships.where(role: 2).count == 1 && membership.role == "owner" %>
+                <%= "You are the last owner" %>
+              <% else %>
+                <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, project_membership_path(@project, membership), method: :delete %>
+              <% end %>
           <% else %>
             <%= member.role %>
             <% if current_user.id == membership.user_id %>

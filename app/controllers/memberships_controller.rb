@@ -20,10 +20,15 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @membership = Membership.find(params[:id])
+    @memberships = @project.memberships
+    if @membership.update(role: 2) && @memberships.where(role: 2).count == 1
+      redirect_to :back, notice: "Projects much have at least on owner"
+    else @memberships.where(role: 2).count > 1
+    @project = Project.find(params[:project_id])
     @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
+    end
   end
 
   def destroy
