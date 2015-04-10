@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @submit_name = "Update User"
+    if @user != current_user.id
+      render :file => "#{Rails.root}/public/404.html", :status => 404
+    end
   end
 
   def show
@@ -39,7 +42,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to users_path, notice: "User was successfully deleted."
+      redirect_to signin_path, notice: "User was successfully deleted."
     end
   end
 

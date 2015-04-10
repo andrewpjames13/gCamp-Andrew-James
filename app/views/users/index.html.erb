@@ -23,8 +23,10 @@
         <td><%= link_to u.full_name, u %></td>
         <td><%= mail_to(u.email) %></td>
         <td class="text-right">
-          <%= link_to 'Edit', edit_user_path(u), class:"btn btn-info" %>
-          <%= link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          <% if u.id == current_user.id %>
+            <%= link_to 'Edit', edit_user_path(u), class:"btn btn-info" %>
+            <%= link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          <% end %>
         </td>
       </tr>
       <% end %>
