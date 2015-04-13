@@ -6,6 +6,8 @@ class MembershipsController < ApplicationController
     @project = Project.find(params[:project_id])
     @users = User.all
     @membership = @project.memberships.new
+    @current_membership = Membership.where(user_id: @user.id, project_id: @project.id)
+
   end
 
   def create

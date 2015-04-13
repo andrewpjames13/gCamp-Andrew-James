@@ -37,15 +37,23 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-
+    @user = User.find_by_id(session[:user_id])
+    @membership = Membership.where(user_id: @user.id, project_id: @project.id)
+    @project.memberships.each do |member|
+      @member_id = member.user_id
+    end
+    unless @member_id == @user.id || @user.admin?
+      redirect_to projects_path, notice:'You do not have access to that project'
+    end
   end
 
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
+    if @project.destroy
       redirect_to projects_path, notice: 'Project was successfully destroyed.'
     else
       render :back, notice: 'You do not have access'
+    end
   end
 
   def update

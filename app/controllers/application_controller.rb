@@ -15,9 +15,10 @@ class ApplicationController < ActionController::Base
 
   def current_member
     @project = Project.find_by_id(params[:project_id])
+    @user = User.find_by_id(session[:user_id])
     count = 0
     @project.memberships.each do |member|
-      if member.user_id == current_user.id
+      if @user.admin? || member.user_id == current_user.id
         count += 1
       end
     end

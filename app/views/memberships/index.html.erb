@@ -10,9 +10,8 @@
   <li class="active">Memberships</li>
 </ol>
 
-<% @project.memberships.each do |member| %>
-  <% if member.user_id == current_user.id %>
-    <% if member.role == "owner" %>
+
+    <% if @user.admin? || @current_membership[0].role == "owner" %>
       <div class="well form-inline">
 
         <%= form_for [@project, @membership] do |f| %>
@@ -46,7 +45,7 @@
           <%= link_to membership.user.full_name, user_path(membership.user) %>
         </div>
 
-          <% if member.role == "owner" %>
+          <% if @user.admin? || @current_membership[0].role == "owner" %>
 
             <%= f.hidden_field :user_id, value: membership.user.id %>
             <%= f.select :role, Membership.roles.keys.map{|role| [role.titleize,role]}, {}, {class: "form-control"} %>
@@ -57,7 +56,7 @@
                 <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, project_membership_path(@project, membership), method: :delete %>
               <% end %>
           <% else %>
-            <%= member.role %>
+            <%= membership.role %>
             <% if current_user.id == membership.user_id %>
               <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, project_membership_path(@project, membership, :from=>"own_membership"), method: :delete, notice:"#{membership.user.full_name}  successfully removed" %>
             <% end %>
@@ -66,6 +65,3 @@
       <% end %>
   <% end %>
     </div>
-
-  <% end %>
-<% end %>

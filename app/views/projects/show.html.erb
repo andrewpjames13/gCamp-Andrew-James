@@ -1,9 +1,8 @@
-<% @project.memberships.each do |member| %>
-  <% if member.user_id == current_user.id %>
 <div class="page-header">
 
   <div class="pull-right">
-    <% if member.role == "owner" %>
+
+    <% if @user.admin? || @membership[0].role == "owner" %>
           <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-info" %>
       <% end %>
   </div>
@@ -20,11 +19,10 @@
 </ol>
 
 <%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project, @task) %>
-<br>
-<br>
+<br><br>
 <%= link_to "#{@project.memberships.count} Memberships", project_memberships_path(@project) %>
 <br><br>
-<% if member.role == "owner" %>
+<% if @user.admin? || @membership[0].role == "owner" %>
       <div class="well">
         <h4>Delete Project</h4>
         <p>
@@ -32,6 +30,4 @@
         </p>
         <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
       </div>
-      <% end %>
-  <% end %>
 <% end %>

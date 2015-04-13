@@ -18,18 +18,31 @@
     </thead>
 
     <tbody>
-        <% Membership.all.each do |member| %>
+        <% if current_user.admin? %>
+          <% @projects.each do |project| %>
+          <tr>
+            <td><%= link_to project.name, project_path(project) %></td>
+            <td><%= link_to project.tasks.count, project_tasks_path(project) %></td>
+            <td class="text-right">
+              <%= link_to 'Edit', edit_project_path(project), class:"btn btn-info" %>
+              <%= link_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
+        <% elsif %>
+          <% Membership.all.each do |member| %>
         <% if member.user_id == current_user.id %>
         <tr>
           <td><%= link_to member.project.name, project_path(member.project) %></td>
           <td><%= link_to member.project.tasks.count, project_tasks_path(member.project) %></td>
           <td class="text-right">
-            <% if member.role == "owner" %>
+            <% if member.role == "owner" || current_user.admin?%>
             <%= link_to 'Edit', edit_project_path(member.project), class:"btn btn-info" %>
             <%= link_to 'Delete', project_path(member.project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
             <% end %>
           </td>
         </tr>
+        <% end %>
         <% end %>
         <% end %>
 

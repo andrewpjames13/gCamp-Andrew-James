@@ -65,4 +65,12 @@ namespace :clean do
     end
   end
 
+  task :removes_projects_with_no_members => :environment do
+    Project.all.each do |proj|
+      if proj.memberships == []
+        proj.destroy
+      end
+    end
+  end
+
 end
