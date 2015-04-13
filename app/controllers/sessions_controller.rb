@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to projects_path, notice: "Welcome"
+      redirect_to session[:return_to] || projects_path, notice: "Welcome"
     else
       flash[:login_alert] = "Email / password combination invalid"
       render :new

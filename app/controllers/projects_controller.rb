@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   layout "internal"
+  # before_action :store_return_to
   before_action :authenticate
 
 
