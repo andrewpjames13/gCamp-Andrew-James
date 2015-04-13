@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  layout "internal"
   before_action :current_member
 
   def index

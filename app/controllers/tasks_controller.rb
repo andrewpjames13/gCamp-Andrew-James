@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  layout "internal"
+
   before_action :authenticate
   before_action :current_member
   before_action :set_task, only: [:show, :edit, :update, :destroy]

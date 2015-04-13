@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  layout "internal"
   before_action :authenticate
 
 
@@ -43,8 +44,8 @@ class ProjectsController < ApplicationController
       @member_id = member.user_id
     end
     unless @member_id == @user.id || @user.admin?
-      redirect_to projects_path, notice:'You do not have access to that project'
-    end
+     redirect_to projects_path, notice:'You do not have access to that project'
+   end
   end
 
   def destroy

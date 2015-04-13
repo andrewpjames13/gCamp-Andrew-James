@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout "internal"
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
