@@ -22,7 +22,7 @@
   <dt><b>Last name</b></dt>
   <p><dd><%= @user.last_name %></dd></p>
 
-  <% if @user.id == current_user.id || current_user.admin?%>
+  <% if @user.id == current_user.id || current_user.admin? || (@current_user_memberships & @user.memberships.map {|membership| membership.project_id}).count >= 1%>
   <dt><b>Email</b></dt>
   <p><dd><%= @user.email %></dd></p>
   <% end %>

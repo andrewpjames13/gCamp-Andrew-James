@@ -5,6 +5,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @current_user_memberships = current_user.memberships.map do |membership|
+      membership.project_id
+    end
   end
 
   def new
@@ -22,6 +25,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @current_user_memberships = current_user.memberships.map do |membership|
+      membership.project_id
+    end
   end
 
   def update
