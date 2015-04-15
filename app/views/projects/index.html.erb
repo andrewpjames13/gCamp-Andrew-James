@@ -20,8 +20,8 @@
     <tbody>
         <% if current_user.admin? %>
           <% @projects.each do |project| %>
-          <tr>
-            <td><%= link_to project.name, project_path(project) %></td>
+          <tr class="tr">
+            <td class="td"><%= link_to project.name, project_path(project) %></td>
             <td><%= link_to project.tasks.count, project_tasks_path(project) %></td>
             <td class="text-right">
               <%= link_to 'Edit', edit_project_path(project), class:"btn btn-info" %>
