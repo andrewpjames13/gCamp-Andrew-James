@@ -35,12 +35,13 @@
         <tr>
           <td><%= link_to member.project.name, project_path(member.project) %></td>
           <td><%= link_to member.project.tasks.count, project_tasks_path(member.project) %></td>
-          <td class="text-right">
+          <td></td>
+          <!-- <td class="text-right">
             <% if member.role == "owner" || current_user.admin?%>
             <%= link_to 'Edit', edit_project_path(member.project), class:"btn btn-info" %>
             <%= link_to 'Delete', project_path(member.project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
             <% end %>
-          </td>
+          </td> -->
         </tr>
         <% end %>
         <% end %>
