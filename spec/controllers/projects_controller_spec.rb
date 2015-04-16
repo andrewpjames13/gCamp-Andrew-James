@@ -48,9 +48,10 @@ describe ProjectsController do
 
         get :show, id: @project.id
 
-        expect(response).to be
         expect(response).to redirect_to projects_path
       end
     end
+
+
   end
 end
