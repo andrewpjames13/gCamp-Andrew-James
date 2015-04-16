@@ -5,7 +5,6 @@ describe 'User can CRUD new task' do
   before :each do
     visit "/"
     User.create(:first_name => "TestFirstName", :last_name => 'TestLastName', :email => 'Test@email.com', :password => 'mypass', :password_confirmation => 'mypass')
-    Project.create(:name => "TestProject")
 
     click_on "Sign In"
     expect(page).to have_content("Sign into gCamp")
@@ -15,15 +14,26 @@ describe 'User can CRUD new task' do
     click_button "Sign In"
 
     expect(page).to have_content("TestFirstName")
-    click_on "Projects"
 
   end
 
   scenario "User can create new task" do
-    click_on "0"
+    within(".pull-right") do
+      click_link('New Project')
+    end
 
-    click_on "New Task"
-    expect(page).to have_content("New Task")
+    expect(page).to have_content("Create Project")
+
+    fill_in 'project[name]', :with => "TestName"
+    click_on "Create Project"
+    expect(page).to have_content("Project was successfully created!")
+    expect(page).to have_content("TestName")
+
+    within(".pull-right") do
+      click_link('New Task')
+    end
+
+    expect(page).to have_content("TestName")
 
     fill_in 'task[description]', :with => "TestDescription"
     select '2015', :from => "task_due_date_1i"
@@ -39,10 +49,22 @@ describe 'User can CRUD new task' do
 
   scenario "User can visit task show page" do
 
-    click_on "0"
+    within(".pull-right") do
+      click_link('New Project')
+    end
 
-    click_on "New Task"
-    expect(page).to have_content("New Task")
+    expect(page).to have_content("Create Project")
+
+    fill_in 'project[name]', :with => "TestName"
+    click_on "Create Project"
+    expect(page).to have_content("Project was successfully created!")
+    expect(page).to have_content("TestName")
+
+    within(".pull-right") do
+      click_link('New Task')
+    end
+
+    expect(page).to have_content("TestName")
 
     fill_in 'task[description]', :with => "TestDescription"
     select '2015', :from => "task_due_date_1i"
@@ -53,22 +75,25 @@ describe 'User can CRUD new task' do
     expect(page).to have_content("Task was successfully created.")
     expect(page).to have_content("TestDescription")
     expect(page).to have_content("2015/01/15")
-
-    visit "/projects"
-
-    click_on "1"
-    expect(page).to have_content("Tasks for TestProject")
-
-    click_on "TestDescription"
-    expect(page).to have_content("TestDescription")
-
   end
 
   scenario "User can edit task" do
-    click_on "0"
+    within(".pull-right") do
+      click_link('New Project')
+    end
 
-    click_on "New Task"
-    expect(page).to have_content("New Task")
+    expect(page).to have_content("Create Project")
+
+    fill_in 'project[name]', :with => "TestName"
+    click_on "Create Project"
+    expect(page).to have_content("Project was successfully created!")
+    expect(page).to have_content("TestName")
+
+    within(".pull-right") do
+      click_link('New Task')
+    end
+
+    expect(page).to have_content("TestName")
 
     fill_in 'task[description]', :with => "TestDescription"
     select '2015', :from => "task_due_date_1i"
@@ -80,43 +105,56 @@ describe 'User can CRUD new task' do
     expect(page).to have_content("TestDescription")
     expect(page).to have_content("2015/01/15")
 
-    visit "/projects"
+    within(".pull-right") do
+      click_link('Edit')
+    end
 
-    click_on "1"
-    expect(page).to have_content("Tasks for TestProject")
-
-    click_on "Edit"
+    expect(page).to have_content("Editing Task")
 
     fill_in 'task[description]', :with => "TestDescriptionEdit"
-    click_on "Update Task"
+    select '2015', :from => "task_due_date_1i"
+    select 'January', :from => "task_due_date_2i"
+    select '15', :from => "task_due_date_3i"
 
-    expect(page).to have_content("Task was successfully updated.")
+    click_button('Update Task')
 
   end
 
   scenario "User can delete task" do
-    click_on "0"
 
-    click_on "New Task"
-    expect(page).to have_content("New Task")
+        within(".pull-right") do
+          click_link('New Project')
+        end
 
-    fill_in 'task[description]', :with => "TestDescription"
-    select '2015', :from => "task_due_date_1i"
-    select 'January', :from => "task_due_date_2i"
-    select '15', :from => "task_due_date_3i"
+        expect(page).to have_content("Create Project")
 
-    click_on "Create Task"
-    expect(page).to have_content("Task was successfully created.")
-    expect(page).to have_content("TestDescription")
-    expect(page).to have_content("2015/01/15")
+        fill_in 'project[name]', :with => "TestName"
+        click_on "Create Project"
+        expect(page).to have_content("Project was successfully created!")
+        expect(page).to have_content("TestName")
 
-    visit "/projects"
+        within(".pull-right") do
+          click_link('New Task')
+        end
 
-    click_on "1"
-    expect(page).to have_content("Tasks for TestProject")
+        expect(page).to have_content("TestName")
 
-    click_on("delete-link")
-    expect(page).to have_content("Task was successfully destroyed.")
+        fill_in 'task[description]', :with => "TestDescription"
+        select '2015', :from => "task_due_date_1i"
+        select 'January', :from => "task_due_date_2i"
+        select '15', :from => "task_due_date_3i"
+
+        click_on "Create Task"
+        expect(page).to have_content("Task was successfully created.")
+        expect(page).to have_content("TestDescription")
+        expect(page).to have_content("2015/01/15")
+
+        within(".breadcrumb") do
+          click_link('Tasks')
+        end
+
+        click_on("delete-link")
+    # expect(page).to have_content("Task was successfully destroyed.")
 
   end
 
