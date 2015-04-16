@@ -24,8 +24,8 @@
             <td class="td"><%= link_to project.name, project_path(project) %></td>
             <td><%= link_to project.tasks.count, project_tasks_path(project) %></td>
             <td class="text-right">
-              <%= link_to 'Edit', edit_project_path(project), class:"btn btn-info" %>
-              <%= link_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+              <!-- <%= link_to 'Edit', edit_project_path(project), class:"btn btn-info" %>
+              <%= link_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %> -->
             </td>
           </tr>
           <% end %>
